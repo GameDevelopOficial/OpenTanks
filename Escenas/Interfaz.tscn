@@ -1,0 +1,530 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://fuente/BowlbyOne-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://script/Interfaz.gd" type="Script" id=2]
+[ext_resource path="res://sprite/mando.png" type="Texture" id=3]
+[ext_resource path="res://sprite/lifeforceorb.png" type="Texture" id=4]
+[ext_resource path="res://sprite/teclado1.png" type="Texture" id=5]
+[ext_resource path="res://sprite/teclado2.png" type="Texture" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+outline_size = 2
+outline_color = Color( 0.34902, 0.223529, 0.0941176, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 30
+outline_size = 2
+outline_color = Color( 0.384314, 0.298039, 0.0666667, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 30
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=5]
+default_font = SubResource( 4 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 30
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=7]
+default_font = SubResource( 6 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 30
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=9]
+default_font = SubResource( 8 )
+
+[sub_resource type="DynamicFont" id=10]
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=11]
+default_font = SubResource( 10 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 20
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=13]
+default_font = SubResource( 12 )
+
+[node name="Interfaz" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 2 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.505882, 0.431373, 0.164706, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="titulo" type="Label" parent="."]
+anchor_right = 1.0
+margin_bottom = 127.0
+text = "OpenTanks"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="margen" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -162.0
+margin_top = -189.0
+margin_right = 162.0
+margin_bottom = 255.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="color" type="ColorRect" parent="margen"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 304.0
+margin_bottom = 424.0
+color = Color( 0.285156, 0.233098, 0.0467834, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="separador" type="VBoxContainer" parent="margen"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 304.0
+margin_bottom = 424.0
+custom_constants/separation = 30
+alignment = 1
+
+[node name="jugar" type="Button" parent="margen/separador"]
+margin_top = 54.0
+margin_right = 294.0
+margin_bottom = 108.0
+custom_fonts/font = SubResource( 3 )
+text = "jugar"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="agregar" type="Button" parent="margen/separador"]
+margin_top = 138.0
+margin_right = 294.0
+margin_bottom = 192.0
+custom_fonts/font = SubResource( 3 )
+text = "jugadores"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="opciones" type="Button" parent="margen/separador"]
+margin_top = 222.0
+margin_right = 294.0
+margin_bottom = 276.0
+custom_fonts/font = SubResource( 3 )
+text = "opciones"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="salir" type="Button" parent="margen/separador"]
+margin_top = 306.0
+margin_right = 294.0
+margin_bottom = 360.0
+custom_fonts/font = SubResource( 3 )
+text = "salir"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="seleccionJugadores" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="margen" type="MarginContainer" parent="seleccionJugadores"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 215.0
+custom_constants/margin_right = 50
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="contenedor" type="VBoxContainer" parent="seleccionJugadores/margen"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 759.0
+margin_bottom = 590.0
+
+[node name="numero de tanques" type="Label" parent="seleccionJugadores/margen/contenedor"]
+margin_right = 739.0
+margin_bottom = 95.0
+text = "jugadores"
+align = 1
+
+[node name="jugadores" type="Control" parent="seleccionJugadores/margen/contenedor"]
+margin_top = 99.0
+margin_right = 739.0
+margin_bottom = 508.0
+size_flags_vertical = 3
+theme = SubResource( 5 )
+
+[node name="jugador" type="VBoxContainer" parent="seleccionJugadores/margen/contenedor/jugadores"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -413.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="separador_1" type="HBoxContainer" parent="seleccionJugadores/margen/contenedor/jugadores/jugador"]
+margin_right = 739.0
+margin_bottom = 58.0
+
+[node name="colotTXT" type="Label" parent="seleccionJugadores/margen/contenedor/jugadores/jugador/separador_1"]
+margin_top = 5.0
+margin_right = 163.0
+margin_bottom = 53.0
+text = "color:     "
+
+[node name="color" type="ColorPickerButton" parent="seleccionJugadores/margen/contenedor/jugadores/jugador/separador_1"]
+margin_left = 167.0
+margin_right = 280.0
+margin_bottom = 58.0
+text = "color"
+edit_alpha = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="nombreTXT" type="Label" parent="seleccionJugadores/margen/contenedor/jugadores/jugador/separador_1"]
+margin_left = 284.0
+margin_top = 5.0
+margin_right = 465.0
+margin_bottom = 53.0
+size_flags_horizontal = 3
+text = "nombre:  "
+align = 2
+
+[node name="nombre" type="LineEdit" parent="seleccionJugadores/margen/contenedor/jugadores/jugador/separador_1"]
+margin_left = 469.0
+margin_right = 739.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 270, 0 )
+text = "GameDevelop"
+
+[node name="rondas" type="HBoxContainer" parent="seleccionJugadores/margen/contenedor"]
+margin_top = 512.0
+margin_right = 739.0
+margin_bottom = 570.0
+theme = SubResource( 7 )
+
+[node name="texto" type="Label" parent="seleccionJugadores/margen/contenedor/rondas"]
+margin_top = 5.0
+margin_right = 369.0
+margin_bottom = 53.0
+text = "rondas para ganar:"
+
+[node name="r" type="LineEdit" parent="seleccionJugadores/margen/contenedor/rondas"]
+margin_left = 373.0
+margin_right = 503.0
+margin_bottom = 58.0
+text = "5"
+align = 1
+
+[node name="botones" type="MarginContainer" parent="seleccionJugadores"]
+anchor_bottom = 1.0
+margin_right = 212.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="color" type="ColorRect" parent="seleccionJugadores/botones"]
+margin_right = 212.0
+margin_bottom = 600.0
+color = Color( 0.25098, 0.32549, 0.54902, 0.941176 )
+
+[node name="separador" type="VBoxContainer" parent="seleccionJugadores/botones"]
+margin_right = 212.0
+margin_bottom = 600.0
+
+[node name="Label" type="Label" parent="seleccionJugadores/botones/separador"]
+margin_top = 165.0
+margin_right = 212.0
+margin_bottom = 260.0
+size_flags_vertical = 6
+
+[node name="agregar" type="Button" parent="seleccionJugadores/botones/separador"]
+margin_top = 430.0
+margin_right = 212.0
+margin_bottom = 484.0
+custom_fonts/font = SubResource( 3 )
+text = "agregar"
+
+[node name="quitar" type="Button" parent="seleccionJugadores/botones/separador"]
+margin_top = 488.0
+margin_right = 212.0
+margin_bottom = 542.0
+custom_fonts/font = SubResource( 3 )
+text = "quitar"
+
+[node name="salir" type="Button" parent="seleccionJugadores/botones/separador"]
+margin_top = 546.0
+margin_right = 212.0
+margin_bottom = 600.0
+custom_fonts/font = SubResource( 3 )
+text = "salir"
+
+[node name="tiempo" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="opciones" type="MarginContainer" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 121.0
+margin_right = -45.0
+margin_bottom = -64.0
+theme = SubResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="opciones"]
+margin_right = 939.0
+margin_bottom = 415.0
+color = Color( 0.282353, 0.231373, 0.0470588, 1 )
+
+[node name="boton_salir" type="Control" parent="opciones"]
+margin_right = 939.0
+margin_bottom = 415.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="boton" type="Button" parent="opciones/boton_salir"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -51.0
+margin_top = -4.0
+margin_right = 51.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 75, 37 )
+text = "salir"
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="op" type="VBoxContainer" parent="opciones"]
+margin_right = 939.0
+margin_bottom = 415.0
+
+[node name="numRonda" type="HBoxContainer" parent="opciones/op"]
+margin_right = 939.0
+margin_bottom = 58.0
+
+[node name="Label" type="Label" parent="opciones/op/numRonda"]
+margin_top = 5.0
+margin_right = 430.0
+margin_bottom = 53.0
+text = "    numero de ronda:      "
+
+[node name="ronda" type="LineEdit" parent="opciones/op/numRonda"]
+margin_left = 434.0
+margin_right = 564.0
+margin_bottom = 58.0
+text = "3"
+align = 1
+
+[node name="sonidoTXT" type="Label" parent="opciones/op"]
+margin_top = 62.0
+margin_right = 939.0
+margin_bottom = 110.0
+text = "sonido"
+
+[node name="sonido" type="HSlider" parent="opciones/op"]
+margin_top = 114.0
+margin_right = 939.0
+margin_bottom = 130.0
+custom_icons/grabber_highlight = ExtResource( 4 )
+custom_icons/grabber = ExtResource( 4 )
+value = 90.0
+
+[node name="error" type="Label" parent="."]
+modulate = Color( 0.164706, 0.160784, 0, 1 )
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -63.0
+theme = SubResource( 11 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="informacion" type="ColorRect" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -345.0
+margin_top = 120.0
+margin_right = -21.0
+margin_bottom = -64.0
+color = Color( 0.529412, 0.635294, 0.745098, 0.780392 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="info" type="HBoxContainer" parent="informacion"]
+margin_left = 22.0
+margin_top = 59.0
+margin_right = 186.0
+margin_bottom = 109.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="jugador1" type="Label" parent="informacion/info"]
+margin_top = 8.0
+margin_right = 110.0
+margin_bottom = 41.0
+size_flags_horizontal = 2
+theme = SubResource( 13 )
+text = "player 1:"
+
+[node name="mando" type="TextureRect" parent="informacion/info"]
+margin_left = 114.0
+margin_right = 164.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+
+[node name="info2" type="HBoxContainer" parent="informacion"]
+margin_left = 22.0
+margin_top = 145.0
+margin_right = 239.0
+margin_bottom = 195.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="jugador1" type="Label" parent="informacion/info2"]
+margin_top = 8.0
+margin_right = 109.0
+margin_bottom = 41.0
+size_flags_horizontal = 2
+theme = SubResource( 13 )
+text = "player 2:"
+
+[node name="mando" type="TextureRect" parent="informacion/info2"]
+margin_left = 113.0
+margin_right = 163.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 6
+
+[node name="mando2" type="TextureRect" parent="informacion/info2"]
+margin_left = 167.0
+margin_right = 217.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="info3" type="HBoxContainer" parent="informacion"]
+margin_left = 22.0
+margin_top = 230.0
+margin_right = 186.0
+margin_bottom = 280.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="jugador1" type="Label" parent="informacion/info3"]
+margin_top = 8.0
+margin_right = 109.0
+margin_bottom = 41.0
+size_flags_horizontal = 2
+theme = SubResource( 13 )
+text = "player 3:"
+
+[node name="mando2" type="TextureRect" parent="informacion/info3"]
+margin_left = 114.0
+margin_right = 164.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="info4" type="HBoxContainer" parent="informacion"]
+margin_left = 22.0
+margin_top = 311.0
+margin_right = 186.0
+margin_bottom = 361.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="jugador1" type="Label" parent="informacion/info4"]
+margin_top = 8.0
+margin_right = 108.0
+margin_bottom = 41.0
+size_flags_horizontal = 2
+theme = SubResource( 13 )
+text = "player 4:"
+
+[node name="mando2" type="TextureRect" parent="informacion/info4"]
+margin_left = 114.0
+margin_right = 164.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[connection signal="timeout" from="tiempo" to="." method="_on_tiempo_timeout"]

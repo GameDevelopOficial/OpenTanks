@@ -1,0 +1,191 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://audio/TankExplosion.wav" type="AudioStream" id=1]
+[ext_resource path="res://script/destrui.gd" type="Script" id=2]
+[ext_resource path="res://sprite/particulas/star_09.png" type="Texture" id=3]
+[ext_resource path="res://sprite/particulas/smoke_01.png" type="Texture" id=4]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0.490909 ), 0.0, -0.825909, 0, 0, Vector2( 1, 0 ), -2.57555, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+direction = Vector3( 0, 1, 0 )
+gravity = Vector3( 0, -30, 0 )
+initial_velocity = 20.0
+scale_curve = SubResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.402344, 0.3432, 0.264038, 1 )
+
+[sub_resource type="SphereMesh" id=5]
+material = SubResource( 4 )
+radial_segments = 4
+rings = 3
+
+[sub_resource type="SpatialMaterial" id=6]
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0.109756, 0.341463, 0.926829 )
+colors = PoolColorArray( 1, 1, 0, 1, 1, 0.486275, 0.286275, 1, 1, 0.146629, 0.146629, 1 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
+
+[sub_resource type="Curve" id=9]
+_data = [ Vector2( 0, 0.101227 ), 0.0, 0.0, 0, 0, Vector2( 0.568182, 0.996933 ), -0.0410257, -0.0410257, 0, 0, Vector2( 1, 0.248466 ), -2.42742, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=10]
+curve = SubResource( 9 )
+
+[sub_resource type="ParticlesMaterial" id=11]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3( 1, 5, 1 )
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 2.0
+linear_accel = 10.0
+linear_accel_random = 0.5
+scale_curve = SubResource( 10 )
+color_ramp = SubResource( 8 )
+
+[sub_resource type="QuadMesh" id=12]
+
+[sub_resource type="SpatialMaterial" id=13]
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 4 )
+
+[sub_resource type="Gradient" id=14]
+
+[sub_resource type="GradientTexture" id=15]
+gradient = SubResource( 14 )
+
+[sub_resource type="ParticlesMaterial" id=16]
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3( 0, 2, 0 )
+initial_velocity = 1.0
+radial_accel = 2.0
+radial_accel_random = 0.38
+color_ramp = SubResource( 15 )
+
+[sub_resource type="QuadMesh" id=17]
+
+[sub_resource type="Animation" id=18]
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("expl:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rocas:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("explosion:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("humo:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="SphereMesh" id=19]
+
+[sub_resource type="SpatialMaterial" id=20]
+params_blend_mode = 1
+albedo_color = Color( 0.960784, 0.756863, 0.0392157, 1 )
+albedo_texture = ExtResource( 3 )
+
+[node name="Explosion" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="rocas" type="Particles" parent="."]
+emitting = false
+amount = 16
+lifetime = 1.7
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 5 )
+
+[node name="expl" type="Particles" parent="."]
+material_override = SubResource( 6 )
+emitting = false
+amount = 64
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.5
+randomness = 1.0
+process_material = SubResource( 11 )
+draw_pass_1 = SubResource( 12 )
+
+[node name="humo" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.910485, 0 )
+material_override = SubResource( 13 )
+emitting = false
+amount = 64
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 16 )
+draw_pass_1 = SubResource( 17 )
+
+[node name="explosion" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 1 )
+unit_db = 50.0
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/explosion = SubResource( 18 )
+
+[node name="cubre" type="MeshInstance" parent="."]
+mesh = SubResource( 19 )
+material/0 = SubResource( 20 )

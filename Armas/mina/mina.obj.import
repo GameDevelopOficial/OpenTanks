@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/mina.obj-6173cfa3ed60962905d671ba8f1d6c48.mesh"
+
+[deps]
+
+files=[ "res://.import/mina.obj-6173cfa3ed60962905d671ba8f1d6c48.mesh" ]
+
+source_file="res://Armas/mina/mina.obj"
+dest_files=[ "res://.import/mina.obj-6173cfa3ed60962905d671ba8f1d6c48.mesh", "res://.import/mina.obj-6173cfa3ed60962905d671ba8f1d6c48.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

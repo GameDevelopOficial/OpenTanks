@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Bala.obj-8e5c009003ebbdce39e29481b89c8e91.mesh"
+
+[deps]
+
+files=[ "res://.import/Bala.obj-8e5c009003ebbdce39e29481b89c8e91.mesh" ]
+
+source_file="res://modelos/Bala.obj"
+dest_files=[ "res://.import/Bala.obj-8e5c009003ebbdce39e29481b89c8e91.mesh", "res://.import/Bala.obj-8e5c009003ebbdce39e29481b89c8e91.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

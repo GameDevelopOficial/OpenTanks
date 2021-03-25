@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Gasolina.obj-565bd4e4594f2c4b36232caa674cffae.mesh"
+
+[deps]
+
+files=[ "res://.import/Gasolina.obj-565bd4e4594f2c4b36232caa674cffae.mesh" ]
+
+source_file="res://modelos/Gasolina.obj"
+dest_files=[ "res://.import/Gasolina.obj-565bd4e4594f2c4b36232caa674cffae.mesh", "res://.import/Gasolina.obj-565bd4e4594f2c4b36232caa674cffae.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

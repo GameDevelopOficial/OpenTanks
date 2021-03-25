@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/TanqueDestruido.obj-08303584536898f2f885a2fe974273ac.mesh"
+
+[deps]
+
+files=[ "res://.import/TanqueDestruido.obj-08303584536898f2f885a2fe974273ac.mesh" ]
+
+source_file="res://modelos/TanqueDestruido.obj"
+dest_files=[ "res://.import/TanqueDestruido.obj-08303584536898f2f885a2fe974273ac.mesh", "res://.import/TanqueDestruido.obj-08303584536898f2f885a2fe974273ac.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

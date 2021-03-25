@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://modelos/canion.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://script/armas/canion.gd" type="Script" id=2]
+[ext_resource path="res://audio/rifle.wav" type="AudioStream" id=3]
+[ext_resource path="res://particulas/chispas.tscn" type="PackedScene" id=4]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0, 0, 0, 1 )
+metallic = 0.5
+roughness = 0.2
+
+[node name="canion" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="canion" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )
+
+[node name="chispas" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01401, 1.27991, 1.25028 )
+
+[node name="salida" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01401, 1.27991, 1.25028 )
+
+[node name="RayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0105, 1.26551, 0 )
+cast_to = Vector3( 0, 0, 80 )
+
+[node name="sonido" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 3 )
+unit_db = 30.0

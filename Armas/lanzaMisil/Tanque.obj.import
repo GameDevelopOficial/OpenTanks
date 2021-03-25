@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Tanque.obj-1dc702d7fc36568410c298c10217e82c.mesh"
+
+[deps]
+
+files=[ "res://.import/Tanque.obj-1dc702d7fc36568410c298c10217e82c.mesh" ]
+
+source_file="res://Armas/lanzaMisil/Tanque.obj"
+dest_files=[ "res://.import/Tanque.obj-1dc702d7fc36568410c298c10217e82c.mesh", "res://.import/Tanque.obj-1dc702d7fc36568410c298c10217e82c.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

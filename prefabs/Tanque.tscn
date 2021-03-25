@@ -1,0 +1,216 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://modelos/Tanque.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://audio/EngineIdle.ogg" type="AudioStream" id=2]
+[ext_resource path="res://particulas/polvo.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sprite/Health Wheel.png" type="Texture" id=4]
+[ext_resource path="res://script/Tanque/MovimientoTanque.gd" type="Script" id=5]
+[ext_resource path="res://script/Tanque/vida.gd" type="Script" id=6]
+[ext_resource path="res://fuente/BowlbyOne-Regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://audio/EngineDriving.ogg" type="AudioStream" id=8]
+[ext_resource path="res://sprite/Aim Arrow.png" type="Texture" id=9]
+[ext_resource path="res://script/Tanque/disparo.gd" type="Script" id=10]
+[ext_resource path="res://audio/ShotFiring.wav" type="AudioStream" id=11]
+[ext_resource path="res://audio/ShotCharging.wav" type="AudioStream" id=12]
+[ext_resource path="res://sprite/fondo_progreso.png" type="Texture" id=13]
+[ext_resource path="res://script/nombre.gd" type="Script" id=14]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.8, 0.85, 1 )
+
+[sub_resource type="QuadMesh" id=2]
+
+[sub_resource type="ViewportTexture" id=3]
+viewport_path = NodePath("area_slider")
+
+[sub_resource type="SpatialMaterial" id=4]
+resource_local_to_scene = true
+flags_transparent = true
+flags_unshaded = true
+flags_albedo_tex_force_srgb = true
+albedo_texture = SubResource( 3 )
+
+[sub_resource type="PlaneMesh" id=5]
+
+[sub_resource type="ViewportTexture" id=6]
+viewport_path = NodePath("disparo")
+
+[sub_resource type="SpatialMaterial" id=7]
+resource_local_to_scene = true
+flags_transparent = true
+flags_unshaded = true
+flags_albedo_tex_force_srgb = true
+albedo_texture = SubResource( 6 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 39
+outline_size = 3
+outline_color = Color( 0.117647, 0.0980392, 0.0980392, 1 )
+font_data = ExtResource( 7 )
+
+[sub_resource type="SphereMesh" id=9]
+
+[sub_resource type="ViewportTexture" id=10]
+viewport_path = NodePath("Nombre")
+
+[sub_resource type="SpatialMaterial" id=11]
+resource_local_to_scene = true
+flags_transparent = true
+flags_unshaded = true
+flags_albedo_tex_force_srgb = true
+albedo_texture = SubResource( 10 )
+
+[node name="Tanque" type="KinematicBody"]
+script = ExtResource( 5 )
+m_velocidad = 4.0
+m_VelocidadRotacion = 3.0
+m_EngineIdling = ExtResource( 2 )
+m_EngineDriving = ExtResource( 8 )
+
+[node name="Tanque" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = null
+material/1 = null
+material/2 = null
+material/3 = null
+material/4 = null
+material/5 = null
+material/6 = null
+material/7 = null
+material/8 = null
+
+[node name="col" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0 )
+shape = SubResource( 1 )
+
+[node name="sonido" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 2 )
+unit_db = 30.0
+autoplay = true
+
+[node name="sonido_disparo" type="AudioStreamPlayer3D" parent="."]
+unit_db = 30.0
+
+[node name="polvoIzq" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.75 )
+emitting = false
+one_shot = true
+
+[node name="polvoDer" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.75 )
+emitting = false
+one_shot = true
+
+[node name="area_slider" type="Viewport" parent="."]
+size = Vector2( 512, 512 )
+transparent_bg = true
+hdr = false
+usage = 0
+render_target_v_flip = true
+render_target_update_mode = 3
+script = ExtResource( 6 )
+
+[node name="Grafica" type="Control" parent="area_slider"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="slider" type="TextureProgress" parent="area_slider/Grafica"]
+margin_right = 40.0
+margin_bottom = 40.0
+value = 50.0
+texture_under = ExtResource( 4 )
+texture_progress = ExtResource( 4 )
+fill_mode = 5
+tint_under = Color( 0.909804, 0.788235, 0.521569, 0.313726 )
+tint_progress = Color( 0.14902, 0, 1, 0.588235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="area_slider"]
+
+[node name="vida" type="MeshInstance" parent="."]
+transform = Transform( 4, 0, 0, 0, -6.51683e-07, 0, 0, -4, 0, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 4 )
+
+[node name="posSalida" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 1.7, 1.35 )
+
+[node name="disparo" type="Viewport" parent="."]
+size = Vector2( 256, 256 )
+transparent_bg = true
+hdr = false
+usage = 0
+render_target_update_mode = 3
+script = ExtResource( 10 )
+ChargingClip = ExtResource( 12 )
+FireClip = ExtResource( 11 )
+
+[node name="grafica" type="Control" parent="disparo"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 256, 256 )
+
+[node name="fuerza" type="TextureProgress" parent="disparo/grafica"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 256, 256 )
+value = 60.0
+texture_under = ExtResource( 9 )
+texture_progress = ExtResource( 9 )
+fill_mode = 3
+tint_under = Color( 0.219608, 0.219608, 0.219608, 0.219608 )
+nine_patch_stretch = true
+
+[node name="ataque" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 3, 0, 1.5, 5 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 7 )
+
+[node name="Nombre" type="Viewport" parent="."]
+size = Vector2( 518, 104 )
+transparent_bg = true
+hdr = false
+usage = 0
+render_target_v_flip = true
+render_target_update_mode = 3
+script = ExtResource( 14 )
+
+[node name="nombreControl" type="Control" parent="Nombre"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="centro" type="CenterContainer" parent="Nombre/nombreControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="img" type="TextureRect" parent="Nombre/nombreControl/centro"]
+margin_right = 518.0
+margin_bottom = 104.0
+texture = ExtResource( 13 )
+
+[node name="nombreTXT" type="Label" parent="Nombre/nombreControl/centro"]
+margin_left = 44.0
+margin_top = 21.0
+margin_right = 473.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 429, 62 )
+custom_fonts/font = SubResource( 8 )
+text = "pablo daniel sosa"
+align = 1
+valign = 1
+
+[node name="nombre" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 11 )

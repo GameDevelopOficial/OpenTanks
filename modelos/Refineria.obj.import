@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Refineria.obj-71512700027f54b0ba7a50f664f6275a.mesh"
+
+[deps]
+
+files=[ "res://.import/Refineria.obj-71512700027f54b0ba7a50f664f6275a.mesh" ]
+
+source_file="res://modelos/Refineria.obj"
+dest_files=[ "res://.import/Refineria.obj-71512700027f54b0ba7a50f664f6275a.mesh", "res://.import/Refineria.obj-71512700027f54b0ba7a50f664f6275a.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Roca1.obj-2a547733ef7204df313fb6d728ed6169.mesh"
+
+[deps]
+
+files=[ "res://.import/Roca1.obj-2a547733ef7204df313fb6d728ed6169.mesh" ]
+
+source_file="res://modelos/Roca1.obj"
+dest_files=[ "res://.import/Roca1.obj-2a547733ef7204df313fb6d728ed6169.mesh", "res://.import/Roca1.obj-2a547733ef7204df313fb6d728ed6169.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

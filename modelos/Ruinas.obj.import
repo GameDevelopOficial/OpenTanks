@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Ruinas.obj-e3a42ddf84643e9372e2dc3c1c825510.mesh"
+
+[deps]
+
+files=[ "res://.import/Ruinas.obj-e3a42ddf84643e9372e2dc3c1c825510.mesh" ]
+
+source_file="res://modelos/Ruinas.obj"
+dest_files=[ "res://.import/Ruinas.obj-e3a42ddf84643e9372e2dc3c1c825510.mesh", "res://.import/Ruinas.obj-e3a42ddf84643e9372e2dc3c1c825510.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
