@@ -1,5 +1,7 @@
 extends Spatial
 
+export (PackedScene) var terreno : PackedScene
+
 export (int) var numeroRondaParaGanar = 5
 export (float) var StartDelay = 3
 export (float) var finDelay = 3
@@ -7,9 +9,11 @@ export (Array, Script) var tanques: Array
 export var colores : PoolColorArray
 export (Array, NodePath) var posiciones
 
+onready var musica = get_parent().get_node("musica")
 onready var controlCamara = get_parent().get_node("ControlCamara")
 onready var textoMensaje = get_parent().get_node("Interfaz/margen/Label")
 onready var menuPausa = get_parent().get_node('Interfaz/MenuPausa')
+onready var padre = get_parent()
 
 var prefabTank = preload("res://prefabs/Tanque.tscn")
 var potenciador = preload('res://prefabs/potenciador.tscn')
@@ -17,18 +21,18 @@ var potenciador = preload('res://prefabs/potenciador.tscn')
 var numeroRonda: int 
 var i = 0
 
-onready var musica = get_parent().get_node("musica")
-
 var RondaGanadas
 var JuegoGanado
 var manejadoresTanque: Array
+var dos: bool = false
 
 func _ready() -> void:
 # ----------------------------------------------
+	dos = Guardar.dividida
 	colores = Guardar.colores
 	numeroRondaParaGanar = Guardar.numeroRonda
 # ----------------------------------------------
-	var cant = get_parent().get_node('TiempoPotenciado').get_children()
+	var cant = padre.get_node('TiempoPotenciado').get_children()
 	for e in cant:
 		e.connect('timeout', self, "on_termino_tiempo", [e])
 
@@ -38,7 +42,18 @@ func _ready() -> void:
 	crear_tiempo("finalizar", finDelay)
 	manejadoresTanque.resize(colores.size())
 	InstanciarTodosLosTanques()
-	PonerObjetivosCamara()
+
+	if dos:
+		controlCamara.desactivarCamara()
+		padre.get_node('camara_dividida/jugadores/J1y2/jugador_1/V0').add_child(terreno.instance())
+		padre.get_node('camara_dividida').numero_jugadores = colores.size()
+		padre.get_node('camara_dividida').iniciar()
+
+	else:
+# le damos los objetivos a la camara
+		PonerObjetivosCamara()
+		padre.get_node('mundo').add_child(terreno.instance())
+
 	menuPausa.tanques = manejadoresTanque
 	menuPausa.rondas = numeroRonda
 	menuPausa.rondasGanar = numeroRondaParaGanar
@@ -62,9 +77,24 @@ func InstanciarTodosLosTanques():
 		nodo.tanque = prefabTank.instance()
 		nodo.numeroDeJugador = i + 1
 		nodo.setUp()
-		get_parent().get_node("tanques").add_child(nodo.tanque)
+
+		if !dos:
+			padre.get_node("tanques").add_child(nodo.tanque)
+		else:
+
+			if i < 2:
+				padre.get_node('camara_dividida/jugadores/J1y2/jugador_' + str(i+1)).get_node("V" + str(i)).add_child(nodo.tanque)
+
+			else:
+				padre.get_node('camara_dividida/jugadores/J3y4/jugador_' + str(i+1)).get_node('V' + str(i)).add_child(nodo.tanque)
+
+		padre.get_node("tanques").add_child(nodo.tanque)
 		nodo.tanque.connect("muerte", self, "murio_un_tanque")
 		manejadoresTanque[i] = nodo
+
+		if dos:
+			nodo.tanque.poner_camara_como_current()
+
 		i += 1
 
 func PonerObjetivosCamara(): 
@@ -79,7 +109,8 @@ func comenzarRonda():
 	get_node("comenzar").start()
 	ReiniciarTodosLosTanques()
 	DeshabilitarControlTanque()
-	controlCamara.PonerPosicionTamanioInicial()
+	if !dos:
+		controlCamara.PonerPosicionTamanioInicial()
 
 	numeroRonda += 1
 	textoMensaje.text = "RONDA: " + str(numeroRonda)
@@ -142,7 +173,7 @@ func obtenerGAnadorJuego():
 	return null
 
 func revisar_potenciadores():
-	var phijos = get_parent().get_node('potenciadores').get_children()
+	var phijos = padre.get_node('potenciadores').get_children()
 	for e in phijos:
 		if e.get_child_count() <= 0:
 			colocar_potenciador(e)
@@ -174,8 +205,8 @@ func pausarJuego():
 	menuPausa.cargarDatos()
 
 func objetoTomado(cual):
-	get_parent().get_node('TiempoPotenciado').get_child(int(cual.name)).start()
+	padre.get_node('TiempoPotenciado').get_child(int(cual.name)).start()
 
 func on_termino_tiempo (tiempo):
-	var potenc = get_parent().get_node('potenciadores').get_child(int(tiempo.name))
+	var potenc = padre.get_node('potenciadores').get_child(int(tiempo.name))
 	colocar_potenciador(potenc)

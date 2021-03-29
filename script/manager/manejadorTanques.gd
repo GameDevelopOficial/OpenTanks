@@ -50,6 +50,8 @@ func resetear():
 	for n in nodos:
 		if n.has_method("iniciar"):
 			n.iniciar()
+		if n.has_method("terminar"):
+			n.terminar()
 
 	tanque.visible = true
 

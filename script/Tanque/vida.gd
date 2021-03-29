@@ -28,6 +28,8 @@ func RecibirDanio (cantidad : float):
 		Matarme()
 
 func establecerVidaUI():
+	if barraVida == null:
+		barraVida = $Grafica/slider 
 	barraVida.value = vidaActual
 	barraVida.tint_progress = lerpColor(vidaMinima, vidaMaxima, vidaActual / ComienzoVida)
 

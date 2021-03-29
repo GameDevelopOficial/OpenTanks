@@ -29,3 +29,7 @@ func _inicio():
 
 func obtener_layer():
 	return nodoJugador.collision_layer
+
+func terminar():
+	if nodoJugador != null:
+		nodoJugador.eliminarArma(self)

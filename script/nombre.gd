@@ -12,5 +12,5 @@ func colocarNombre (nombre : String, color: Color):
 	colore = color
 
 func _process(delta: float) -> void:
-	nodo.rotation_degrees.y -= 1
+	nodo.rotation_degrees.y -= 5 * delta
 

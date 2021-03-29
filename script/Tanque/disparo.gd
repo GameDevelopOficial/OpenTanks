@@ -18,6 +18,9 @@ var velocidadCargar: float
 var fuego: bool
 
 func iniciar() -> void:
+	if slider == null:
+		slider = $grafica/fuerza
+
 	fuerzaActualLanzar = FuerzaMinimaLanzar
 	slider.max_value = FuerzaMaximaLanzar
 	slider.min_value = FuerzaMinimaLanzar

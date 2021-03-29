@@ -5,6 +5,9 @@ var colores: PoolColorArray
 var nombres: PoolStringArray
 var rondas: int
 
+var mapa: String = " "
+var dividida: bool = false
+
 func _ready() -> void:
 	$seleccionJugadores/botones/separador/agregar.connect("pressed", self, "agregarJugador")
 	$seleccionJugadores/botones/separador/quitar.connect("pressed", self, "quitarJugador")
@@ -14,7 +17,11 @@ func _ready() -> void:
 	$margen/separador/agregar.connect("pressed", self, "agregar")
 	$margen/separador/opciones.connect("pressed", self, "opciones")
 	$margen/separador/salir.connect("pressed", self, "salir")
+
 	$opciones/boton_salir/boton.connect("pressed", self, "menu")
+	$opciones/op/pantalla/normal.connect('pressed', self, "tipo_mapa")
+	$opciones/op/pantalla/div.connect('pressed', self, "tipo_mapa")
+	$opciones/op/mapas.connect('item_selected', self, "seleccion_mapa")
 
 func agregarJugador():
 	if numJugadores > 3:
@@ -69,7 +76,26 @@ func jugar():
 	if numJugadores <= 1:
 		mostrarMensaje("Agregue mas jugadores con el boton \"jugadores\" para poder jugar")
 		return
-	get_tree().change_scene("res://Escenas/campo.tscn")
+
+	elif mapa == " ":
+		mostrarMensaje("Seleccione un mapa en el menu de \"opciones\"")
+		return
+
+	Guardar.dividida = dividida
+	get_tree().change_scene(mapa)
+
+func tipo_mapa():
+	dividida = !dividida
+	$opciones/op/pantalla/div.pressed = dividida
+	$opciones/op/pantalla/normal.pressed = !dividida
+
+func seleccion_mapa (indice: int):
+	match indice:
+		1:
+			mapa = "res://Escenas/desierto.tscn"
+
+		_:
+			mapa = " "
 
 func agregar():
 	$titulo.visible = false
@@ -81,7 +107,6 @@ func opciones():
 	$opciones.visible = true
 
 func menu():
-	var rondas = int($opciones/op/numRonda/ronda.text)
 	$opciones.visible = false
 
 func salir():

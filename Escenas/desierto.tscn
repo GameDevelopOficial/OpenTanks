@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://script/manager/manejadorTanques.gd" type="Script" id=1]
+[ext_resource path="res://Escenas/campo.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Escenas/Terreno.tscn" type="PackedScene" id=3]
+
+[node name="campo" instance=ExtResource( 2 )]
+
+[node name="ControladorJuego" parent="." index="6"]
+terreno = ExtResource( 3 )
+numeroRondaParaGanar = 3
+tanques = [ ExtResource( 1 ), ExtResource( 1 ), ExtResource( 1 ), ExtResource( 1 ) ]
+posiciones = [ NodePath("../posiciones/posicion1"), NodePath("../posiciones/posicion2"), NodePath("../posiciones/posicion3"), NodePath("../posiciones/posicion4") ]
+
+[node name="posicion1" type="Position3D" parent="posiciones" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9485, 0, -3.12234 )
+
+[node name="posicion2" type="Position3D" parent="posiciones" index="1"]
+transform = Transform( -0.00841266, 0, -0.999965, 0, 1, 0, 0.999965, 0, -0.00841266, 11.6739, 0, 4.01546 )
+
+[node name="posicion3" type="Position3D" parent="posiciones" index="2"]
+transform = Transform( -0.999182, 0, 0.0404461, 0, 1, 0, -0.0404461, 0, -0.999182, -32, 0, 11 )
+
+[node name="posicion4" type="Position3D" parent="posiciones" index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, -35 )
+
+[node name="0" type="Position3D" parent="potenciadores" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.0206, 0, -23.8372 )
+
+[node name="1" type="Position3D" parent="potenciadores" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.15115, 0, -12.6521 )
+
+[node name="2" type="Position3D" parent="potenciadores" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40.2643, 0, -7.41586 )
+
+[node name="3" type="Position3D" parent="potenciadores" index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.3891, 0, 37.9561 )
+
+[node name="4" type="Position3D" parent="potenciadores" index="4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9356, 0, 16.7066 )
+
+[node name="5" type="Position3D" parent="potenciadores" index="5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.0698, 0, -27.6672 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="0" type="Timer" parent="TiempoPotenciado" index="0"]
+wait_time = 10.0
+one_shot = true
+
+[node name="1" type="Timer" parent="TiempoPotenciado" index="1"]
+wait_time = 10.0
+one_shot = true
+
+[node name="2" type="Timer" parent="TiempoPotenciado" index="2"]
+wait_time = 10.0
+one_shot = true
+
+[node name="3" type="Timer" parent="TiempoPotenciado" index="3"]
+wait_time = 10.0
+one_shot = true
+
+[node name="4" type="Timer" parent="TiempoPotenciado" index="4"]
+wait_time = 10.0
+one_shot = true
+
+[node name="5" type="Timer" parent="TiempoPotenciado" index="5"]
+wait_time = 10.0
+one_shot = true

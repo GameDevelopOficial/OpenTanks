@@ -2,7 +2,6 @@ extends KinematicBody
 
 signal muerte
 
-
 export (int) var m_NumeroJugador = 1
 export (float) var m_velocidad = 2
 export (float) var m_VelocidadRotacion = 180
@@ -19,6 +18,7 @@ var m_ValorEntradaRotacion : float
 var m_PitchOriginal : float
 
 onready var m_AudioMovimiento = $sonido
+onready var Camara = $cam
 
 var potenciado: bool = false
 
@@ -110,3 +110,5 @@ func eliminarArma(arma = null):
 	$disparo.set_process(true)
 	potenciado = false
 
+func poner_camara_como_current():
+	Camara.current = true

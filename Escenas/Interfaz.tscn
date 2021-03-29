@@ -1,11 +1,14 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://fuente/BowlbyOne-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://script/Interfaz.gd" type="Script" id=2]
 [ext_resource path="res://sprite/mando.png" type="Texture" id=3]
-[ext_resource path="res://sprite/lifeforceorb.png" type="Texture" id=4]
 [ext_resource path="res://sprite/teclado1.png" type="Texture" id=5]
 [ext_resource path="res://sprite/teclado2.png" type="Texture" id=6]
+[ext_resource path="res://sprite/pantalla comun press.png" type="Texture" id=7]
+[ext_resource path="res://sprite/pantalla dividida.png" type="Texture" id=8]
+[ext_resource path="res://sprite/pantalla dividida press.png" type="Texture" id=9]
+[ext_resource path="res://sprite/mapas/desierto.png" type="Texture" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
@@ -45,20 +48,44 @@ font_data = ExtResource( 1 )
 [sub_resource type="Theme" id=9]
 default_font = SubResource( 8 )
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="StyleBoxTexture" id=10]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 600, 500 )
+
+[sub_resource type="StyleBoxTexture" id=11]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 600, 500 )
+
+[sub_resource type="StyleBoxTexture" id=12]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 600, 500 )
+
+[sub_resource type="StyleBoxTexture" id=13]
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 600, 500 )
+
+[sub_resource type="StyleBoxTexture" id=14]
+texture = ExtResource( 9 )
+region_rect = Rect2( 0, 0, 600, 500 )
+
+[sub_resource type="StyleBoxTexture" id=15]
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 600, 500 )
+
+[sub_resource type="DynamicFont" id=16]
 font_data = ExtResource( 1 )
 
-[sub_resource type="Theme" id=11]
-default_font = SubResource( 10 )
+[sub_resource type="Theme" id=17]
+default_font = SubResource( 16 )
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=18]
 size = 20
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="Theme" id=13]
-default_font = SubResource( 12 )
+[sub_resource type="Theme" id=19]
+default_font = SubResource( 18 )
 
 [node name="Interfaz" type="Control"]
 anchor_right = 1.0
@@ -357,36 +384,42 @@ __meta__ = {
 margin_right = 939.0
 margin_bottom = 415.0
 
-[node name="numRonda" type="HBoxContainer" parent="opciones/op"]
+[node name="pantalla" type="HBoxContainer" parent="opciones/op"]
 margin_right = 939.0
-margin_bottom = 58.0
+margin_bottom = 48.0
+custom_constants/separation = 29
 
-[node name="Label" type="Label" parent="opciones/op/numRonda"]
-margin_top = 5.0
-margin_right = 430.0
-margin_bottom = 53.0
-text = "    numero de ronda:      "
+[node name="tipoTXT" type="Label" parent="opciones/op/pantalla"]
+margin_right = 326.0
+margin_bottom = 48.0
+text = "tipo de pantalla:  "
 
-[node name="ronda" type="LineEdit" parent="opciones/op/numRonda"]
-margin_left = 434.0
-margin_right = 564.0
-margin_bottom = 58.0
-text = "3"
-align = 1
+[node name="normal" type="CheckBox" parent="opciones/op/pantalla"]
+margin_left = 355.0
+margin_right = 508.0
+margin_bottom = 48.0
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/normal = SubResource( 12 )
+pressed = true
+text = "normal"
 
-[node name="sonidoTXT" type="Label" parent="opciones/op"]
-margin_top = 62.0
+[node name="div" type="CheckBox" parent="opciones/op/pantalla"]
+margin_left = 537.0
+margin_right = 707.0
+margin_bottom = 48.0
+custom_styles/hover = SubResource( 13 )
+custom_styles/pressed = SubResource( 14 )
+custom_styles/normal = SubResource( 15 )
+text = "dividida"
+
+[node name="mapas" type="OptionButton" parent="opciones/op"]
+margin_top = 52.0
 margin_right = 939.0
-margin_bottom = 110.0
-text = "sonido"
-
-[node name="sonido" type="HSlider" parent="opciones/op"]
-margin_top = 114.0
-margin_right = 939.0
-margin_bottom = 130.0
-custom_icons/grabber_highlight = ExtResource( 4 )
-custom_icons/grabber = ExtResource( 4 )
-value = 90.0
+margin_bottom = 106.0
+text = "mapas"
+items = [ "mapas", null, true, 0, null, "desert", ExtResource( 10 ), false, 1, null ]
+selected = 0
 
 [node name="error" type="Label" parent="."]
 modulate = Color( 0.164706, 0.160784, 0, 1 )
@@ -394,7 +427,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -63.0
-theme = SubResource( 11 )
+theme = SubResource( 17 )
 align = 1
 valign = 1
 __meta__ = {
@@ -428,7 +461,7 @@ margin_top = 8.0
 margin_right = 110.0
 margin_bottom = 41.0
 size_flags_horizontal = 2
-theme = SubResource( 13 )
+theme = SubResource( 19 )
 text = "player 1:"
 
 [node name="mando" type="TextureRect" parent="informacion/info"]
@@ -454,7 +487,7 @@ margin_top = 8.0
 margin_right = 109.0
 margin_bottom = 41.0
 size_flags_horizontal = 2
-theme = SubResource( 13 )
+theme = SubResource( 19 )
 text = "player 2:"
 
 [node name="mando" type="TextureRect" parent="informacion/info2"]
@@ -489,7 +522,7 @@ margin_top = 8.0
 margin_right = 109.0
 margin_bottom = 41.0
 size_flags_horizontal = 2
-theme = SubResource( 13 )
+theme = SubResource( 19 )
 text = "player 3:"
 
 [node name="mando2" type="TextureRect" parent="informacion/info3"]
@@ -515,7 +548,7 @@ margin_top = 8.0
 margin_right = 108.0
 margin_bottom = 41.0
 size_flags_horizontal = 2
-theme = SubResource( 13 )
+theme = SubResource( 19 )
 text = "player 4:"
 
 [node name="mando2" type="TextureRect" parent="informacion/info4"]
@@ -526,5 +559,4 @@ rect_min_size = Vector2( 50, 50 )
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 6
-
 [connection signal="timeout" from="tiempo" to="." method="_on_tiempo_timeout"]

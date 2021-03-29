@@ -15,15 +15,11 @@ var DesiredPosition = Vector3.ZERO
 
 onready var Tanques = get_parent().get_node("tanques")
 
-func _ready() -> void:
-#	set_physics_process(Tanques.get_child_count() > 0)
-	
-#	for i in Tanques.get_children():
-#		Target.append(i)
-
-	set_physics_process(false)
+var camaraActiva: bool = true
 
 func iniciar():
+	if !camaraActiva: return
+
 	set_physics_process(Tanques.get_child_count() > 0)
 	for i in Tanques.get_children():
 		Target.append(i)
@@ -78,6 +74,14 @@ func FindRequiredSize() -> float:
 	return size
 
 func PonerPosicionTamanioInicial():
+	if !camaraActiva: return
+
 	FindAveragePosition()
 	translation = DesiredPosition
 	Camara.set_orthogonal(FindRequiredSize(), 0.05, 100)
+
+func desactivarCamara():
+	$Camera.current = false
+	camaraActiva = false
+	set_physics_process(false)
+

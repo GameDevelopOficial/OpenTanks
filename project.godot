@@ -25,6 +25,7 @@ config/description="Juego multijugador (local) creado desde la serie de tutorial
 que estan inspirado en la serie de tutoriales de Unity:
 https://learn.unity.com/project/tanks-tutorial"
 run/main_scene="res://Escenas/Interfaz.tscn"
+config/icon="res://sprite/tanque.png"
 
 [autoload]
 
